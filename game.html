@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090b16">
+  <title>격투 세계관</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="격투 세계관 홈">
+        <span class="brand-mark">격</span>
+        <span><strong>격투 세계관</strong><small>WORLD OF FIGHTERS</small></span>
+      </a>
+      <div class="top-status"><span class="status-dot"></span> LOCAL DUEL <span class="version">FINAL BUILD 1.0</span></div>
+      <button class="icon-button" id="soundToggle" title="효과음 켜기/끄기" aria-label="효과음 켜기/끄기">♫</button>
+    </header>
+
+    <main>
+      <section id="titleScreen" class="screen title-screen active">
+        <div class="title-grid"></div>
+        <div class="title-content">
+          <div class="eyebrow"><span></span> TWO PLAYER ARCADE FIGHTING</div>
+          <h1>격투 <em>세계관</em></h1>
+          <p class="title-subtitle">서로 다른 힘, 단 하나의 승자.</p>
+          <div class="title-emblem" aria-hidden="true">
+            <div class="emblem-ring ring-one"></div>
+            <div class="emblem-ring ring-two"></div>
+            <div class="emblem-slash"></div>
+            <div class="emblem-core">VS</div>
+          </div>
+          <div class="title-actions">
+            <button class="primary-button" id="playButton">대전 시작 <span>→</span></button>
+            <button class="secondary-button" id="howButton">게임 방법</button>
+            <button class="secondary-button" id="titleSettingsButton">설정</button>
+          </div>
+          <div class="title-footer"><span>LOCAL 2P</span><span>·</span><span>BEST OF 3</span><span>·</span><span>NO DOWNLOAD REQUIRED</span></div>
+        </div>
+        <div class="title-side side-left">BLAZE <b>01</b></div>
+        <div class="title-side side-right"><b>02</b> KALE</div>
+      </section>
+
+      <section id="selectScreen" class="screen select-screen">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow"><span></span> CHARACTER SELECT</div>
+            <h2>전투원을 선택하라</h2>
+            <p>각 플레이어가 서로 다른 캐릭터를 선택해야 합니다.</p>
+          </div>
+          <div class="select-progress">
+            <span id="p1PickStatus">P1 선택 대기</span><i></i>
+            <span id="p2PickStatus">P2 선택 대기</span>
+          </div>
+        </div>
+
+        <div class="pick-panels">
+          <div class="pick-panel p1-panel">
+            <span class="player-tag">PLAYER 1</span>
+            <strong id="p1PickName">선택하세요</strong>
+            <small id="p1PickType">왼쪽 플레이어</small>
+          </div>
+          <div class="versus">VS</div>
+          <div class="pick-panel p2-panel">
+            <span class="player-tag">PLAYER 2</span>
+            <strong id="p2PickName">선택하세요</strong>
+            <small id="p2PickType">오른쪽 플레이어</small>
+          </div>
+        </div>
+
+        <div class="character-grid" id="characterGrid">
+          <button class="character-card" data-character="blaze" style="--fighter-color:#4f96ff">
+            <span class="card-index">01 / BALANCE</span>
+            <span class="fighter-art blaze-art"><img class="character-art-image" src="assets/blaze.png" alt="블레이즈 캐릭터"></span>
+            <span class="character-name">블레이즈</span>
+            <span class="character-en">BLAZE</span>
+            <span class="character-type">밸런스형</span>
+            <span class="character-desc">강력한 한 방과 밀쳐내기를 활용한다.</span>
+            <span class="stats">
+              <span>이동 <i><b style="width:67%"></b></i></span>
+              <span>공격 <i><b style="width:48%"></b></i></span>
+              <span>궁극기 <i><b style="width:100%"></b></i></span>
+            </span>
+            <span class="card-pick">선택하기</span>
+          </button>
+
+          <button class="character-card" data-character="kale" style="--fighter-color:#ff547c">
+            <span class="card-index">02 / POWER</span>
+            <span class="fighter-art kale-art"><img class="character-art-image" src="assets/kale.png" alt="케일 캐릭터"></span>
+            <span class="character-name">케일</span>
+            <span class="character-en">KALE</span>
+            <span class="character-type">파워형</span>
+            <span class="character-desc">기절공으로 상대의 공격을 끊는다.</span>
+            <span class="stats">
+              <span>이동 <i><b style="width:75%"></b></i></span>
+              <span>공격 <i><b style="width:75%"></b></i></span>
+              <span>궁극기 <i><b style="width:63%"></b></i></span>
+            </span>
+            <span class="card-pick">선택하기</span>
+          </button>
+
+          <button class="character-card" data-character="aris" style="--fighter-color:#bba0ff">
+            <span class="card-index">03 / TECHNIQUE</span>
+            <span class="fighter-art aris-art"><img class="character-art-image" src="assets/aris.png" alt="아리스 캐릭터"></span>
+            <span class="character-name">아리스</span>
+            <span class="character-en">ARIS</span>
+            <span class="character-type">기술형 · 여성</span>
+            <span class="character-desc">정밀한 어둠의 기술과 긴 사거리.</span>
+            <span class="stats">
+              <span>이동 <i><b style="width:75%"></b></i></span>
+              <span>공격 <i><b style="width:75%"></b></i></span>
+              <span>궁극기 <i><b style="width:75%"></b></i></span>
+            </span>
+            <span class="card-pick">선택하기</span>
+          </button>
+
+          <button class="character-card" data-character="winter" style="--fighter-color:#56f0ee">
+            <span class="card-index">04 / SPEED</span>
+            <span class="fighter-art winter-art"><img class="character-art-image" src="assets/winter.png" alt="윈터 캐릭터"></span>
+            <span class="character-name">윈터</span>
+            <span class="character-en">WINTER</span>
+            <span class="character-type">스피드형</span>
+            <span class="character-desc">빠른 이동과 연속 공격으로 압박한다.</span>
+            <span class="stats">
+              <span>이동 <i><b style="width:100%"></b></i></span>
+              <span>공격 <i><b style="width:90%"></b></i></span>
+              <span>궁극기 <i><b style="width:50%"></b></i></span>
+            </span>
+            <span class="card-pick">선택하기</span>
+          </button>
+        </div>
+
+        <div class="select-bottom">
+          <span>캐릭터 클릭 또는 P1 <kbd>1–4</kbd> / P2 <kbd>7–0</kbd></span>
+          <button id="startBattleButton" class="primary-button" disabled>전투 시작 <span>→</span></button>
+        </div>
+      </section>
+
+      <section id="battleScreen" class="screen battle-screen">
+        <div class="battle-top">
+          <div class="fighter-hud hud-left">
+            <div class="hud-name-row"><span class="player-tag">PLAYER 1</span><strong id="p1BattleName">블레이즈</strong></div>
+            <div class="hp-label"><span>HP</span><b id="p1HpText">100 / 100</b></div>
+            <div class="hp-track"><div id="p1HpBar" class="hp-fill"></div></div>
+            <div class="gauge-label"><span>궁극기 게이지</span><b id="p1GaugeText">0%</b></div>
+            <div class="gauge-track"><div id="p1GaugeBar" class="gauge-fill"></div></div>
+          </div>
+
+          <div class="round-clock">
+            <span id="roundLabel">ROUND 1</span>
+            <strong id="timer">90</strong>
+            <small>FIRST TO 2</small>
+          </div>
+
+          <div class="fighter-hud hud-right">
+            <div class="hud-name-row"><strong id="p2BattleName">케일</strong><span class="player-tag">PLAYER 2</span></div>
+            <div class="hp-label"><span>HP</span><b id="p2HpText">100 / 100</b></div>
+            <div class="hp-track"><div id="p2HpBar" class="hp-fill"></div></div>
+            <div class="gauge-label"><span>궁극기 게이지</span><b id="p2GaugeText">0%</b></div>
+            <div class="gauge-track"><div id="p2GaugeBar" class="gauge-fill"></div></div>
+          </div>
+        </div>
+
+        <div id="arena" class="arena">
+          <div class="arena-grid"></div>
+          <div class="arena-sun"></div>
+          <div class="arena-label">WORLD ARENA <span>01</span></div>
+          <div class="arena-center-line"></div>
+
+          <div id="p1Fighter" class="arena-fighter p1-fighter">
+            <div class="fighter-shadow"></div>
+            <div class="fighter-figure blaze-art"><img class="battle-character-image" src="assets/blaze.png" alt="블레이즈"></div>
+            <div class="fighter-nameplate" id="p1ArenaName">BLAZE</div>
+          </div>
+
+          <div id="p2Fighter" class="arena-fighter p2-fighter">
+            <div class="fighter-shadow"></div>
+            <div class="fighter-figure kale-art"><img class="battle-character-image" src="assets/kale.png" alt="케일"></div>
+            <div class="fighter-nameplate" id="p2ArenaName">KALE</div>
+          </div>
+
+          <div id="combatEffects" class="combat-effects"></div>
+          <div id="countdownOverlay" class="countdown-overlay"><span>ROUND 1</span><strong>3</strong></div>
+          <div id="battleMessage" class="battle-message"></div>
+        </div>
+
+        <div class="battle-bottom">
+          <div class="control-hint"><b>P1</b> <kbd>A</kbd><kbd>D</kbd> 이동 <kbd>W</kbd> 점프 <kbd>E</kbd> 평타 <kbd>F</kbd> 방어 <kbd>Q</kbd> 스킬 <kbd>R</kbd> 궁극기</div>
+          <div class="control-hint right-hint"><b>P2</b> <kbd>←</kbd><kbd>→</kbd> 이동 <kbd>↑</kbd> 점프 <kbd>/</kbd> 평타 <kbd>.</kbd> 방어 <kbd>Shift</kbd> 스킬 <kbd>Enter</kbd> 궁극기</div>
+        </div>
+
+        <div class="mobile-controls">
+          <div class="mobile-player-controls">
+            <div class="mobile-player-label">P1</div>
+            <div class="mobile-move"><button data-action="left" data-player="1">◀</button><button data-action="right" data-player="1">▶</button></div>
+            <div class="mobile-actions">
+              <button data-action="jump" data-player="1">점프</button><button data-action="attack" data-player="1">평타</button><button data-action="guard" data-player="1">방어</button><button data-action="skill" data-player="1">스킬</button><button data-action="ultimate" data-player="1">궁극기</button>
+            </div>
+          </div>
+          <div class="mobile-player-controls">
+            <div class="mobile-player-label">P2</div>
+            <div class="mobile-move"><button data-action="left" data-player="2">◀</button><button data-action="right" data-player="2">▶</button></div>
+            <div class="mobile-actions">
+              <button data-action="jump" data-player="2">점프</button><button data-action="attack" data-player="2">평타</button><button data-action="guard" data-player="2">방어</button><button data-action="skill" data-player="2">스킬</button><button data-action="ultimate" data-player="2">궁극기</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="resultScreen" class="screen result-screen">
+        <div class="result-kicker">MATCH RESULT</div>
+        <h2 id="resultTitle">VICTORY</h2>
+        <p id="resultSubtitle">승리를 차지했습니다.</p>
+        <div class="result-score">
+          <div><span>PLAYER 1</span><strong id="p1Wins">0</strong><small>ROUND WINS</small></div>
+          <b>:</b>
+          <div><span>PLAYER 2</span><strong id="p2Wins">0</strong><small>ROUND WINS</small></div>
+        </div>
+        <div id="resultLines" class="result-lines"></div>
+        <div class="result-actions">
+          <button id="resultMenuButton" class="secondary-button">메인 메뉴</button>
+          <button id="resultSettingsButton" class="secondary-button">설정</button>
+          <button id="rematchButton" class="primary-button">다시 대전 <span>→</span></button>
+        </div>
+      </section>
+
+      <section id="settingsScreen" class="screen settings-screen">
+        <div class="settings-card">
+          <div class="eyebrow"><span></span> SETTINGS</div>
+          <h2>게임 설정</h2>
+          <label class="setting-row"><span><strong>전체 음량</strong><small>효과음과 배경 톤 음량</small></span><input id="masterVolume" type="range" min="0" max="100" value="65"><b id="volumeValue">65%</b></label>
+          <label class="setting-row"><span><strong>효과음</strong><small>타격, 선택, 전환, 카운트다운</small></span><input id="sfxToggle" type="checkbox" checked><b class="toggle-label">ON</b></label>
+          <label class="setting-row"><span><strong>음악</strong><small>브라우저에서 생성되는 배경 톤</small></span><input id="musicToggle" type="checkbox" checked><b class="toggle-label">ON</b></label>
+          <p class="settings-note">외부 음원은 포함되어 있지 않습니다. 음악과 효과음은 브라우저에서 생성됩니다.</p>
+          <button id="settingsBackButton" class="primary-button">돌아가기 <span>→</span></button>
+        </div>
+      </section>
+
+      <section id="howScreen" class="screen how-screen">
+        <div class="settings-card how-card">
+          <div class="eyebrow"><span></span> HOW TO PLAY</div>
+          <h2>게임 방법</h2>
+          <div class="how-columns">
+            <div><h3>승리 조건</h3><p>총 3라운드 중 먼저 2라운드를 이기면 매치에서 승리합니다. 제한 시간은 90초이며, 시간이 끝나면 HP가 더 높은 플레이어가 라운드를 가져갑니다.</p></div>
+            <div><h3>전투 규칙</h3><p>평타는 연속 입력 시 2타 콤보가 됩니다. 방어 중에는 이동할 수 없지만 피해를 막습니다. 게이지가 100%가 되면 방어할 수 없는 궁극기를 사용할 수 있습니다.</p></div>
+          </div>
+          <div class="key-guide">
+            <span><kbd>A</kbd><kbd>D</kbd> / <kbd>←</kbd><kbd>→</kbd> 이동</span>
+            <span><kbd>W</kbd> / <kbd>↑</kbd> 점프</span>
+            <span><kbd>E</kbd> / <kbd>/</kbd> 평타</span>
+            <span><kbd>F</kbd> / <kbd>.</kbd> 방어</span>
+            <span><kbd>Q</kbd> / <kbd>Shift</kbd> 스킬</span>
+            <span><kbd>R</kbd> / <kbd>Enter</kbd> 궁극기</span>
+          </div>
+          <button id="howBackButton" class="primary-button">확인 <span>→</span></button>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer"><span>격투 세계관</span><span>ONE ARENA. TWO FIGHTERS. ONE WINNER.</span><span>© ARCADE LAB</span></footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
